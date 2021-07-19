@@ -22,14 +22,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     let color = theme === 'DARK' ? 'LIGHT' : 'DARK';
     dispatch(`SET_${color}_THEME`);
     window.localStorage.setItem('theme-type', color);
-    console.log(state, window.localStorage.getItem('theme-type'));
   };
 
   useEffect(() => {
-    console.log(currentTheme);
     let theme = window.localStorage.getItem('theme-type');
     if (!theme) {
-      console.log('asd');
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         dispatch('SET_DARK_THEME');
         window.localStorage.setItem('theme-type', 'DARK');
