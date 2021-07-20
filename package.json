@@ -19,7 +19,7 @@
     "react-dom": "npm:@preact/compat@0.0.4"
   },
   "devDependencies": {
-    "@types/react": "17.0.14",
+    "@types/react": "^17.0.14",
     "@types/styled-jsx": "^2.2.9",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
