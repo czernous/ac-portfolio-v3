@@ -1,5 +1,5 @@
 import MainLayout from 'layouts/main-layout/MainLayout';
-import Navbar from 'components/Navbar';
+import Navbar from 'components/Navbar/Navbar';
 import Link from 'next/link';
 
 export default function Home(props: any) {
@@ -7,8 +7,8 @@ export default function Home(props: any) {
 
   return (
     <MainLayout theme={props.theme}>
-      <Navbar toggleTheme={toggleTheme} />
-      <div className="home">
+      <Navbar theme={props.theme} toggleTheme={toggleTheme} />
+      <div className="home container-xl">
         Hello World. <button onClick={toggleTheme}>change theme</button>
         <ul>
           <li>

@@ -23,6 +23,9 @@ export default function MainLayout(props: IMainLayoutProps) {
           a:hover {
             color: ${props.theme.linkHover};
           }
+          .page-wrapper {
+            margin-top: 90px;
+          }
         `}
       </style>
     </div>

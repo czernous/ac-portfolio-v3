@@ -3,6 +3,9 @@ import { createContext } from 'preact';
 import { useEffect, useReducer } from 'preact/hooks';
 import { themeReducer } from 'reducers/theme-reducer';
 import theme from 'styles/theme';
+import '../styles/bootstrap/bootstrap-reboot.min.css';
+import '../styles/bootstrap/bootstrap-utilities.min.css';
+import '../styles/bootstrap/bootstrap-grid.min.css';
 
 const AppContext = createContext({});
 
