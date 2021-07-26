@@ -10,21 +10,13 @@ export default function MainLayout(props: IMainLayoutProps) {
       </style>
       <style jsx global>
         {`
-          body {
-            background: ${props.theme.background};
-            color: ${props.theme.text};
-          }
           a {
             color: ${props.theme.link};
             text-decoration: none;
-            font-weight: 600;
           }
 
           a:hover {
             color: ${props.theme.linkHover};
-          }
-          .page-wrapper {
-            margin-top: 90px;
           }
         `}
       </style>

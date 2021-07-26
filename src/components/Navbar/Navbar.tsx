@@ -1,21 +1,71 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'preact/hooks';
 import animateMenu from './helpers/animate-menu';
+const DarkIcon = (
+  <svg
+    className="theme-toggle__icon"
+    width="15"
+    height="24"
+    viewBox="0 0 15 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M5 0C3.18 0 1.47 0.5 0 1.35C2.99 3.08 5 6.3 5 10C5 13.7 2.99 16.92 0 18.65C1.47 19.5 3.18 20 5 20C10.52 20 15 15.52 15 10C15 4.48 10.52 0 5 0Z"
+      fill="#370B12"
+    />
+  </svg>
+);
+
+const LightIcon = (
+  <svg
+    className="theme-toggle__icon"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M20 8.69V4H15.31L12 0.690002L8.69 4H4V8.69L0.690002 12L4 15.31V20H8.69L12 23.31L15.31 20H20V15.31L23.31 12L20 8.69ZM12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C15.31 6 18 8.69 18 12C18 15.31 15.31 18 12 18ZM8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16C9.79 16 8 14.21 8 12Z"
+      fill="#F6ACCB"
+    />
+  </svg>
+);
 
 const Navbar = (props: any) => {
   const toggleTheme: VoidFunction = props.toggleTheme;
   const links = ['Home', 'About', 'Services', 'Portfolio', 'Contact'];
   const [activeClass, setActive] = useState('');
+
+  const getThemeIcon = () => {
+    const themeType = props.theme.name;
+    let themeIcon = LightIcon;
+    if (themeType === 'dark') {
+      themeIcon = LightIcon;
+    }
+    if (themeType === 'light') {
+      themeIcon = DarkIcon;
+    }
+    return themeIcon;
+  };
+  const mobileLinksClr = {
+    color: props.theme.background,
+  };
   useEffect(() => {
     animateMenu(setActive);
   }, []);
-  const createLinks = (): JSX.Element[] => {
+  const createLinks = (type?: string): JSX.Element[] => {
     return links.map((link) => {
       let path = link.toLowerCase() === 'home' ? '/' : `/${link.toLowerCase()}`;
       return (
         <li key={link} className="nav-links__item">
           <Link href={path}>
-            <a>{link.toLowerCase()}</a>
+            <a style={type === 'mobile' ? mobileLinksClr : {}}>
+              {link.toLowerCase()}
+            </a>
           </Link>
         </li>
       );
@@ -41,12 +91,18 @@ const Navbar = (props: any) => {
             />
           </svg>
         </button>
-        <nav className="nav">
+        <nav className="nav container-xxl">
           <ul className="nav-links">{createLinks()}</ul>
+          <button className="nav-theme-toggle" onClick={toggleTheme}>
+            {getThemeIcon()}
+          </button>
         </nav>
         <nav className="nav mobile">
           <ul className="nav-links">{createLinks()}</ul>
         </nav>
+        <button className="nav-theme-toggle mobile" onClick={toggleTheme}>
+          {getThemeIcon()}
+        </button>
       </header>
       <div id="bg-circle"></div>
       <style jsx>{`
@@ -82,9 +138,9 @@ const Navbar = (props: any) => {
           display: flex;
           gap: 1em;
           list-style: none;
-          padding: 0 0 0 40px;
           margin: 0;
           text-transform: capitalize;
+          margin-left: -30px;
         }
 
         .nav.mobile .nav-links {
@@ -97,7 +153,6 @@ const Navbar = (props: any) => {
 
         .nav .nav-links__item {
           margin-right: 2rem;
-          background: white;
         }
 
         .nav.mobile .nav-links__item {
@@ -109,10 +164,19 @@ const Navbar = (props: any) => {
           display: block;
           text-align: left;
           padding: 20px 0;
-          font-weight: bold;
+          font-weight: normal;
           letter-spacing: 2px;
           cursor: pointer;
           transition: all ease 500ms;
+        }
+
+        .nav-theme-toggle {
+          background: transparent;
+          border: none;
+        }
+
+        .nav-theme-toggle.mobile {
+          display: none;
         }
 
         .navbar-toggle {
@@ -139,7 +203,7 @@ const Navbar = (props: any) => {
           transition-property: stroke, stroke-dasharray, stroke-dashoffset;
           transition-timing-function: ease;
           transition-duration: 400ms;
-          stroke: ${props.theme.text};
+          stroke: ${props.theme.mainContrast};
           stroke-width: 5.5;
           stroke-linecap: round;
         }
@@ -171,7 +235,7 @@ const Navbar = (props: any) => {
           transform: scale(0);
           width: 50px;
           height: 50px;
-          background: ${props.theme.mobileMenu};
+          background: ${props.theme.mainContrast};
           position: fixed;
           top: 2rem;
           left: 2rem;
@@ -185,6 +249,59 @@ const Navbar = (props: any) => {
           }
           .navbar-toggle {
             display: block;
+          }
+          .nav-theme-toggle.mobile {
+            display: block;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+          }
+        }
+      `}</style>
+      <style jsx global>{`
+        .nav.mobile .nav-links .nav-links__item a {
+          color: ${props.theme.background};
+        }
+
+        .nav-links__item a,
+        .nav.mobile .nav-links .nav-links__item a {
+          position: relative;
+        }
+
+        .nav-links__item a {
+          color: ${props.theme.link};
+        }
+
+        .nav-links__item a:after,
+        .nav.mobile .nav-links .nav-links__item a:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: ${props.theme.link};
+          transform: scaleX(0);
+          transform-origin: right center;
+          transition: transform 0.6s;
+        }
+        .nav.mobile .nav-links .nav-links__item a:after {
+          height: 1px;
+          background: ${props.theme.background};
+        }
+        .nav-links__item a:hover:after,
+        .nav.mobile .nav-links .nav-links__item a:hover:after {
+          transition-duration: 0.4s;
+          transform: scaleX(1);
+          transform-origin: left center;
+        }
+        .page-wrapper {
+          margin-top: 90px;
+        }
+        @media (max-width: 560px) {
+          .nav-theme-toggle .theme-toggle__icon {
+            width: 40px;
+            height: 40px;
           }
         }
       `}</style>

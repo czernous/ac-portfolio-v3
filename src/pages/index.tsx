@@ -1,15 +1,21 @@
 import MainLayout from 'layouts/main-layout/MainLayout';
 import Navbar from 'components/Navbar/Navbar';
 import Link from 'next/link';
+import { AppContext } from './_app';
+import { useContext } from 'preact/hooks';
+import { IAppState } from 'interfaces/app-state';
 
-export default function Home(props: any) {
-  const toggleTheme = props.toggleTheme;
+export default function Home() {
+  const ctx: any = useContext(AppContext);
+  const appState: IAppState = { ...ctx };
 
   return (
-    <MainLayout theme={props.theme}>
-      <Navbar theme={props.theme} toggleTheme={toggleTheme} />
-      <div className="home container-xl">
-        Hello World. <button onClick={toggleTheme}>change theme</button>
+    <MainLayout theme={appState.data.style}>
+      <Navbar theme={appState.data.style} toggleTheme={appState.toggleFunc} />
+      <section className="home container-xxl">
+        <h1 className="feature-heading display-1">
+          Boost your business with quality websites
+        </h1>
         <ul>
           <li>
             <Link href="/about">
@@ -27,12 +33,15 @@ export default function Home(props: any) {
             </Link>
           </li>
         </ul>
-        <style jsx global>{`
-          body {
-            display: block;
+      </section>
+      <style jsx>
+        {`
+          .feature-heading {
+            font-family: 'Cinzel Decorative', serif;
+            color: ${appState.data.style.mainContrast};
           }
-        `}</style>
-      </div>
+        `}
+      </style>
     </MainLayout>
   );
 }

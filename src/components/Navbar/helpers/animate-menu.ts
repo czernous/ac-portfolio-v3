@@ -16,36 +16,50 @@ export default function animateMenu(setActive: any) {
 
   const openNavbar = () => {
     const openTimeline = gsap.timeline();
-    openTimeline.to('.nav.mobile', 0, { display: 'flex' });
-    openTimeline.to('#bg-circle', 1.5, {
+    openTimeline.to('.nav.mobile', { duration: 0, display: 'flex' });
+    openTimeline.to('#bg-circle', {
+      duration: 1.5,
       scale: getVpdr(),
       ease: Expo.easeInOut,
     });
-    openTimeline.staggerFromTo(
+    openTimeline.fromTo(
       '.nav.mobile ul li',
-      0.5,
-      { y: 25, opacity: 0 },
-      { y: 0, opacity: 1 },
-      0.1,
-      1
+
+      {
+        duration: 0.5,
+        y: 25,
+        opacity: 0,
+        delay: -0.7,
+        stagger: 0.1,
+        position: 1,
+        marginBottom: '0.7em',
+      },
+      {
+        duration: 0.5,
+        y: 0,
+        opacity: 1,
+        delay: -0.7,
+        stagger: 0.1,
+        position: 1,
+        marginBottom: '0.7em',
+      }
     );
   };
 
   const closeNavbar = () => {
     const closeTimeline = gsap.timeline();
-    closeTimeline.staggerFromTo(
+    closeTimeline.fromTo(
       '.nav.mobile ul li',
-      0.5,
-      { y: 0, opacity: 1, delay: 0.5 },
-      { y: 25, opacity: 0 },
-      -0.1
+      { duration: 0.5, y: 0, opacity: 1, delay: 0.5, stagger: -0.1 },
+      { duration: 0.5, y: 25, opacity: 0, stagger: -0.1 }
     );
-    closeTimeline.to('#bg-circle', 1, {
+    closeTimeline.to('#bg-circle', {
+      duration: 1,
       scale: 0,
       ease: Expo.easeInOut,
       delay: -0.5,
     });
-    closeTimeline.to('.nav.mobile', 0, { display: 'none' });
+    closeTimeline.to('.nav.mobile', { duration: 0, display: 'none' });
   };
 
   let isOpen = false;
@@ -61,11 +75,22 @@ export default function animateMenu(setActive: any) {
     isOpen = !isOpen;
   };
 
+  function hideMobileNav() {
+    setActive('');
+    closeNavbar();
+    isOpen = !isOpen;
+  }
+
   // On windows resize, recalcule circle radius and update
 
   window.onresize = () => {
+    window.innerWidth > 560 && isOpen ? hideMobileNav() : null;
     if (isOpen) {
-      gsap.to('#bg-circle', 1, { scale: getVpdr(), ease: Expo.easeInOut });
+      gsap.to('#bg-circle', {
+        duration: 1,
+        scale: getVpdr(),
+        ease: Expo.easeInOut,
+      });
     }
   };
 }

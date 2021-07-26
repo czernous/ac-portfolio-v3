@@ -6,26 +6,29 @@ import theme from 'styles/theme';
 import '../styles/bootstrap/bootstrap-reboot.min.css';
 import '../styles/bootstrap/bootstrap-utilities.min.css';
 import '../styles/bootstrap/bootstrap-grid.min.css';
+import { IAppState } from 'interfaces/app-state';
+import { Context } from 'preact';
 
-const AppContext = createContext({});
+export const AppContext = createContext({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const initialSate: any = {
-    data: {
-      style: theme.colors.dark,
-      name: 'DARK',
-    },
-  };
-
-  const [state, dispatch] = useReducer(themeReducer, initialSate);
-  const currentTheme = state;
-
   const toggleTheme = () => {
     let theme = window.localStorage.getItem('theme-type');
     let color = theme === 'DARK' ? 'LIGHT' : 'DARK';
     dispatch(`SET_${color}_THEME`);
     window.localStorage.setItem('theme-type', color);
   };
+
+  const initialSate: IAppState | Context<{}> = {
+    data: {
+      style: theme.colors.dark,
+      name: 'DARK',
+    },
+    toggleFunc: toggleTheme,
+  };
+
+  const [state, dispatch] = useReducer(themeReducer, initialSate);
+  const currentTheme = state;
 
   useEffect(() => {
     let theme = window.localStorage.getItem('theme-type');
@@ -49,6 +52,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         theme={currentTheme.data.style}
         toggleTheme={toggleTheme}
       />
+      <style jsx global>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Open+Sans&display=swap');
+
+          body,
+          html {
+            font-family: 'Open Sans', sans-serif;
+            background: ${currentTheme.data.style.background};
+            color: ${currentTheme.data.style.text};
+          }
+        `}
+      </style>
     </AppContext.Provider>
   );
 }

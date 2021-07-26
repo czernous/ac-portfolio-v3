@@ -1,11 +1,9 @@
 import MainLayout from 'layouts/main-layout/MainLayout';
 import theme from 'styles/theme';
 
-let colorScheme = theme.colors.dark;
-
-export default function Custom404() {
+export default function Custom404(props: any) {
   return (
-    <MainLayout theme={colorScheme}>
+    <MainLayout theme={props.theme}>
       <h1>404 - Page Not Found</h1>
     </MainLayout>
   );
