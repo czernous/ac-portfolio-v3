@@ -108,16 +108,19 @@ const Navbar = (props: any) => {
       <style jsx>{`
         .site-header {
           position: fixed;
-          z-index: 2;
+          z-index: 10;
           top: 0;
           left: 0;
           display: flex;
           width: 100%;
+          box-shadow: ${props.theme.navbarShadow};
+          background: ${props.theme.background}4C;
+          backdrop-filter: blur(15.5px);
         }
 
         .nav {
           width: 100%;
-          height: 110px;
+          height: 70px;
           z-index: 5;
           display: flex;
           align-items: center;
@@ -247,6 +250,9 @@ const Navbar = (props: any) => {
           .nav {
             display: none;
           }
+          .site-header {
+            height: ${props.mobileHieght};
+          }
           .navbar-toggle {
             display: block;
           }
@@ -270,6 +276,7 @@ const Navbar = (props: any) => {
 
         .nav-links__item a {
           color: ${props.theme.link};
+          font-weight: 550;
         }
 
         .nav-links__item a:after,
@@ -296,7 +303,7 @@ const Navbar = (props: any) => {
           transform-origin: left center;
         }
         .page-wrapper {
-          margin-top: 90px;
+          padding-top: 70px;
         }
         @media (max-width: 560px) {
           .nav-theme-toggle .theme-toggle__icon {

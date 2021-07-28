@@ -6,7 +6,7 @@ github: 'https//www.example.com'
 image: 'https//www.example.com/image123.jpg'
 ---
 
-# This is a portfolio article
+# **This is a portfolio article**
 
 Hello cocksucker!
 
@@ -15,6 +15,11 @@ Hello cocksucker!
 - a
 - b
 - c
+
+<div class='row'>
+    <div class='col-lg-6 col-sm-12'>Text left</div>
+    <div class='col-lg-6 col-sm-12'>text right</div>
+</div>
 
 1. asdad
 2. 232322

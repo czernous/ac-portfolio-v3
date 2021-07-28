@@ -18,6 +18,7 @@ const theme = {
       warning: '#fff3cd',
       success: '#d4edda',
       mobileMenu: '#26191B',
+      navbarShadow: 'rgba(17, 17, 26, 0.1) 0 8px 32px 0',
     },
     dark: {
       name: 'dark',
@@ -33,6 +34,7 @@ const theme = {
       warning: '#fff3cd',
       success: '#d4edda',
       mobileMenu: '#f3f3f3',
+      navbarShadow: 'rgba(17, 17, 26, 0.4) 0 8px 32px 0',
     },
   },
 };

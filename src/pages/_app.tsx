@@ -59,7 +59,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           body,
           html {
             font-family: 'Open Sans', sans-serif;
-            background: ${currentTheme.data.style.background};
+            background-color: ${currentTheme.data.style.background};
             color: ${currentTheme.data.style.text};
           }
         `}

@@ -1,21 +1,21 @@
 import IMainLayoutProps from 'interfaces/main-layout-props';
-import mainLayout from 'styles/main-layout';
 
 export default function MainLayout(props: IMainLayoutProps) {
   return (
     <div className="page-wrapper">
       {props.children}
       <style jsx global>
-        {mainLayout}
-      </style>
-      <style jsx global>
         {`
+          .page-wrapper {
+            display: flex;
+          }
+
           a {
             color: ${props.theme.link};
             text-decoration: none;
           }
 
-          a:hover {
+          a:not(.nav-links__item a, .btn):hover {
             color: ${props.theme.linkHover};
           }
         `}
