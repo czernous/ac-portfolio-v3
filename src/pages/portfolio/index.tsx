@@ -12,13 +12,15 @@ export default function Portfolio() {
 
   return (
     <MainLayout theme={appState.data.style}>
-
         <Navbar
             theme={appState.data.style}
             toggleTheme={appState.toggleFunc}
             mobileHeight="0px"
         />
         <div className="container-xxl">
+            <h1 className="page-title my-5 mx-3">
+                Portfolio
+            </h1>
         <div className="portfolio">
           {fakePortfolio.map((item) => {
             const { image, description, title, url, codeUrl } = item;
@@ -62,6 +64,11 @@ export default function Portfolio() {
                 flex-direction: column;
                 justify-content: space-between;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+              }
+              
+              .portfolio-item h3 {
+                color: ${appState.data.style.headerText};
+                font-weight: 700;
               }
 
               .portfolio-item__image {

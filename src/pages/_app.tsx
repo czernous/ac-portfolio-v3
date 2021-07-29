@@ -62,6 +62,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             background-color: ${currentTheme.data.style.background};
             color: ${currentTheme.data.style.text};
           }
+          .page-title {
+            color: ${currentTheme.data.style.headerText};
+            font-weight: 700;
+          }
         `}
       </style>
     </AppContext.Provider>
