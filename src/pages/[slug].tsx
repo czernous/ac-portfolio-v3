@@ -12,8 +12,8 @@ import Navbar from 'components/Navbar/Navbar';
 import { IAppState } from 'interfaces/app-state';
 
 const PortfolioDetailItem = ({ content, meta }: IParsedPageData) => {
-  const ctx: any = useContext(AppContext);
-  const appState: IAppState = { ...ctx };
+  const ctx = useContext(AppContext);
+  const appState: IAppState = {...ctx} as IAppState;
   return (
     <>
       <Head>

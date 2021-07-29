@@ -9,8 +9,8 @@ import BgLight from '../../public/assets/common/bg-light.png';
 import Button from 'components/Button/Button';
 
 export default function Home() {
-  const ctx: any = useContext(AppContext);
-  const appState: IAppState = { ...ctx };
+  const ctx = useContext(AppContext);
+  const appState: IAppState = {...ctx} as IAppState;
 
   const background = appState.data.name === 'DARK' ? BgDark : BgLight;
   return (
