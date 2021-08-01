@@ -73,37 +73,39 @@ const Navbar = (props: any) => {
   };
   return (
     <>
-      <header className="site-header">
-        <button
+      <button
           className={`navbar-toggle ${activeClass}`}
           id="toggle"
           type="button"
-        >
-          <svg viewBox="0 0 100 100" width="80">
-            <path
+      >
+        <svg viewBox="0 0 100 100" width="80">
+          <path
               className="line top"
               d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40"
-            />
-            <path className="line middle" d="m 30,50 h 40" />
-            <path
+          />
+          <path className="line middle" d="m 30,50 h 40" />
+          <path
               className="line bottom"
               d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40"
-            />
-          </svg>
-        </button>
+          />
+        </svg>
+      </button>
+      <header className="site-header">
         <nav className="nav container-xxl">
           <ul className="nav-links">{createLinks()}</ul>
           <button className="nav-theme-toggle" onClick={toggleTheme}>
             {getThemeIcon()}
           </button>
         </nav>
-        <nav className="nav mobile">
-          <ul className="nav-links">{createLinks()}</ul>
-        </nav>
-        <button className="nav-theme-toggle mobile" onClick={toggleTheme}>
-          {getThemeIcon()}
-        </button>
       </header>
+      <header className="site-header mobile">
+          <button className="nav-theme-toggle mobile" onClick={toggleTheme}>
+              {getThemeIcon()}
+          </button>
+      </header>
+      <nav className="nav mobile">
+        <ul className="nav-links">{createLinks()}</ul>
+      </nav>
       <div id="bg-circle"></div>
       <style jsx>{`
         .site-header {
@@ -130,7 +132,7 @@ const Navbar = (props: any) => {
           position: fixed;
           width: 100%;
           height: 100%;
-          z-index: 5;
+          z-index: 11;
           display: none;
           align-items: center;
           justify-content: center;
@@ -152,6 +154,8 @@ const Navbar = (props: any) => {
           max-width: 400px;
           padding: 0;
           text-align: center;
+          margin-left: 0;
+          margin-top: -110px;
         }
 
         .nav .nav-links__item {
@@ -243,7 +247,7 @@ const Navbar = (props: any) => {
           top: 2rem;
           left: 2rem;
           border-radius: 50%;
-          z-index: 1;
+          z-index: 9;
         }
 
         @media (max-width: 560px) {
@@ -252,6 +256,10 @@ const Navbar = (props: any) => {
           }
           .site-header {
             height: ${props.mobileHieght};
+          }
+          .site-header.mobile {
+            height: 110px;
+            z-index: 5;
           }
           .navbar-toggle {
             display: block;

@@ -11,7 +11,7 @@ import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
 export default function Portfolio() {
   const ctx = useContext(AppContext);
   const appState: IAppState = { ...ctx } as IAppState;
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
   const animateCards = () => {
       gsap.set('.portfolio-item', {
           opacity: 0,
