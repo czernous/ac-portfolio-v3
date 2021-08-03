@@ -7,11 +7,12 @@ import { IAppState } from 'interfaces/app-state';
 import BgDark from '../../public/assets/common/bg-dark.png';
 import BgLight from '../../public/assets/common/bg-light.png';
 import Button from 'components/Button/Button';
-import { gsap, Expo, Elastic } from 'gsap';
+import { gsap, Expo } from 'gsap';
 
 export default function Home() {
   const ctx = useContext(AppContext);
   const appState: IAppState = { ...ctx } as IAppState;
+  const background = appState.data.name === 'DARK' ? BgDark : BgLight;
 
   const animateHero = () => {
     const tl = gsap.timeline();
@@ -23,35 +24,32 @@ export default function Home() {
         duration: 3.5,
         height: 0,
         opacity: 0,
-          delay: -0.7,
-          ease: Expo.easeInOut,
+        delay: -0.7,
+        ease: Expo.easeInOut,
         force3D: true,
       },
       {
         duration: 3.5,
         height: 'auto',
         opacity: 1,
-          delay: -0.7,
-          ease: Expo.easeInOut,
+        delay: -0.7,
+        ease: Expo.easeInOut,
         force3D: true,
       }
-    ).to('.home__subheading', {
+    )
+      .to('.home__subheading', {
         x: '0%',
         visibility: 'visible',
         duration: 2.5,
         delay: -1,
-    }).to(
-        '.btn',
-        {
-            y: '0%',
-            duration: 1,
-            delay: -2,
-            ease: 'expo.out',
-        }
-    );
+      })
+      .to('.btn', {
+        y: '0%',
+        duration: 1,
+        delay: -2,
+        ease: 'expo.out',
+      });
   };
-
-  const background = appState.data.name === 'DARK' ? BgDark : BgLight;
 
   useEffect(() => {
     animateHero();

@@ -15,9 +15,9 @@ const Button = (props: any) => {
   return (
     <>
       {props.type === 'button' ? (
-        <div className="btn-container">{button}</div>
+        <div className={`btn-container ${props.customClasses}`}>{button}</div>
       ) : (
-        <div className="btn-container">{link}</div>
+        <div className={`btn-container ${props.customClasses}`}>{link}</div>
       )}{' '}
       <style jsx global>{`
         .btn-container {
@@ -25,7 +25,7 @@ const Button = (props: any) => {
           overflow: hidden;
           z-index: 2;
           display: flex;
-          width: fit-content;
+          width: ${props.containerWidth ?? 'fit-content'};
         }
 
         .btn {

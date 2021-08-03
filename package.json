@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cloudinary-build-url": "^0.2.1",
     "gray-matter": "^4.0.3",
     "gsap": "^3.7.1",
     "marked": "^2.1.3",

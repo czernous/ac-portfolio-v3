@@ -1,23 +1,28 @@
 import { fakePortfolio } from '../../mock-data/fake-portfolio';
 import { useContext, useEffect } from 'preact/hooks';
+import Image from 'next/image';
+import { useAmp } from 'next/amp';
 import { AppContext } from '../_app';
 import { IAppState } from '../../interfaces/app-state';
 import MainLayout from '../../layouts/main-layout/MainLayout';
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import { gsap } from 'gsap';
-import {ScrollTrigger} from "gsap/dist/ScrollTrigger";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+export const config = { amp: 'hybrid' };
 
 export default function Portfolio() {
   const ctx = useContext(AppContext);
   const appState: IAppState = { ...ctx } as IAppState;
+  const isAmp = useAmp();
   gsap.registerPlugin(ScrollTrigger);
   const animateCards = () => {
-      gsap.set('.portfolio-item', {
-          opacity: 0,
-          scale: 0.9,
-      });
-      gsap.set('.portfolio-item h3', {
+    gsap.set('.portfolio-item', {
+      opacity: 0,
+      scale: 0.9,
+    });
+    gsap.set('.portfolio-item h3', {
       opacity: 0,
       y: 75,
       scale: 0.9,
@@ -31,17 +36,16 @@ export default function Portfolio() {
       onEnter: (batch) => {
         batch.forEach((item, index) => {
           const settings = {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              stagger: 0.4,
-              delay: index * 0.3,
-          }
-            gsap.to(item.children, settings);
-            gsap.to(item.children[3], settings)
-            gsap.to(item, settings);
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            stagger: 0.4,
+            delay: index * 0.3,
+          };
+          gsap.to(item.children, settings);
+          gsap.to(item.children[3], settings);
+          gsap.to(item, settings);
         });
-
       },
       once: true,
     });
@@ -49,6 +53,7 @@ export default function Portfolio() {
   useEffect(() => {
     animateCards();
   }, []);
+
   return (
     <MainLayout theme={appState.data.style}>
       <Navbar
@@ -64,11 +69,30 @@ export default function Portfolio() {
             return (
               <div className="portfolio-item">
                 <h3>{title}</h3>
-                <img
-                  className="portfolio-item__image img-fluid"
-                  src={image}
-                  alt=""
-                />
+                {isAmp ? (
+                  // @ts-ignore
+                  <amp-img
+                    className="portfolio-item__image img-fluid"
+                    src={`https://res.cloudinary.com/czernous/image/upload/${image}`}
+                    height={600}
+                    width={1000}
+                    alt=""
+                    layout="responsive"
+                  />
+                ) : (
+                  <div className="portfolio-item__image">
+                    <Image
+                      src={image}
+                      height={600}
+                      width={1000}
+                      alt=""
+                      layout="responsive"
+                      objectFit="cover"
+                      blurDataURL={`/e_blur:1793/${image}`}
+                      placeholder='blur'
+                    />
+                  </div>
+                )}
                 <p>{description}</p>
                 <div className="portfolio-item__footer d-flex justify-content-between">
                   <Button
@@ -109,11 +133,12 @@ export default function Portfolio() {
               }
 
               .portfolio-item__image {
-                max-height: 200px;
+                position: relative;
                 width: 100%;
-                object-fit: cover;
+                height: fit-content;
                 margin: 1em 0;
               }
+
               .portfolio-item__footer {
                 display: flex;
                 align-items: center;

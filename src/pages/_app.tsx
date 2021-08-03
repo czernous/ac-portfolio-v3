@@ -1,4 +1,5 @@
-import type { AppProps } from 'next/app';
+import type { AppProps} from 'next/app';
+import Head from 'next/head';
 import { createContext } from 'preact';
 import { useEffect, useReducer } from 'preact/hooks';
 import { themeReducer } from 'reducers/theme-reducer';
@@ -47,6 +48,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <AppContext.Provider value={{ ...state, dispatch }}>
+      <Head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Open+Sans&display=swap"/>
+      </Head>
       <Component
         {...pageProps}
         theme={currentTheme.data.style}
@@ -54,8 +58,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <style jsx global>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Open+Sans&display=swap');
-
           body,
           html {
             font-family: 'Open Sans', sans-serif;
