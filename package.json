@@ -1,12 +1,13 @@
 {
-  "name": "preact-next-ts-test",
+  "name": "ac-dev-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-static": "next lint && next build && next export"
   },
   "dependencies": {
     "cloudinary-build-url": "^0.2.1",

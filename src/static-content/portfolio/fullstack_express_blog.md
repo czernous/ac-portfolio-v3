@@ -8,6 +8,10 @@ image: 'https//www.example.com/image123.jpg'
 
 # **This is a portfolio article**
 
+
+<img class="img-fluid  w-100 my-3" src="https://res.cloudinary.com/czernous/ac-dev-portfolio/portfolio_images/express_blog_1_mrajq5.webp" />
+
+
 Hello cocksucker!
 
 ### YAy heading number 3

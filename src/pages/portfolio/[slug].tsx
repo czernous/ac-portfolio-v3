@@ -21,7 +21,9 @@ const PortfolioDetailItem = ({ content, meta }: IParsedPageData) => {
       </Head>
       <MainLayout theme={appState.data.style}>
         <Navbar theme={appState.data.style} toggleTheme={appState.toggleFunc} />
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div className="container-xxl">
+          <div className="mt-3 px-3 d-flex flex-column" dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </MainLayout>
     </>
   );

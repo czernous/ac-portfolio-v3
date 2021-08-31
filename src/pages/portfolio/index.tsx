@@ -67,7 +67,7 @@ export default function Portfolio() {
           {fakePortfolio.map((item) => {
             const { image, description, title, url, codeUrl } = item;
             return (
-              <div className="portfolio-item">
+              <div key={item.id} className="portfolio-item">
                 <h3>{title}</h3>
                 {isAmp ? (
                   // @ts-ignore
