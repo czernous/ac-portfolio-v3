@@ -2,6 +2,7 @@ import MainLayout from "layouts/main-layout/MainLayout";
 import Navbar from "components/Navbar/Navbar";
 import { useContext, useEffect } from "preact/hooks";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { AppContext } from "./_app";
 import { IAppState } from "../interfaces/app-state";
@@ -103,7 +104,12 @@ export default function Contact() {
               improving your rankings, reducing bounce rates andincreasing your
               revenue? <br />
               <br />
-              <a href="/contact">Contact me</a> to get a quote
+              <Link href="/contact">
+                <a style={{ fontWeight: 500, textDecoration: "underline" }}>
+                  Contact me
+                </a>
+              </Link>{" "}
+              to get a quote
             </p>
           </div>
           <div className="about__image col-sm-12 col-md-5 d-xs-none mb-3">

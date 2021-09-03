@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { useContext, useEffect } from "preact/hooks";
 import Image from "next/image";
+import Link from "next/link";
 import { useAmp } from "next/amp";
 import { AppContext } from "../_app";
 import { IAppState } from "../../interfaces/app-state";
@@ -109,11 +110,13 @@ export default function Portfolio({ meta }: IParsedPageData) {
                     borderWidth="3px"
                     theme={appState.data.style}
                   />
-                  <a
-                    className="repo-link-btn"
-                    href={codeUrl}
-                    target="_blank"
-                  >{`</>`}</a>
+                  <Link href={codeUrl}>
+                    <a
+                      className="repo-link-btn"
+                      target="_blank"
+                      rel="noopener"
+                    >{`</>`}</a>
+                  </Link>
                 </div>
               </div>
             );

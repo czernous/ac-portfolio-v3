@@ -4,4 +4,5 @@ export interface IAppState {
     name: string;
   };
   toggleFunc: Function;
+  siteName: string;
 }
