@@ -2,8 +2,8 @@
 title: Full Stack Blog
 description: 'Full Stack Blog Project Using Express, EJS, and MongoDB'
 tags: [express, full_stack, mongodb]
-github: 'https//www.example.com'
-image: 'https//www.example.com/image123.jpg'
+codeUrl: 'https://www.example.com'
+image: '/ac-dev-portfolio/portfolio_images/express_blog_1_mrajq5.webp'
 ---
 
 # **This is a portfolio article**

@@ -1,38 +1,42 @@
-import { fakePortfolio } from '../../mock-data/fake-portfolio';
-import { useContext, useEffect } from 'preact/hooks';
-import Image from 'next/image';
-import { useAmp } from 'next/amp';
-import { AppContext } from '../_app';
-import { IAppState } from '../../interfaces/app-state';
-import MainLayout from '../../layouts/main-layout/MainLayout';
-import Navbar from '../../components/Navbar/Navbar';
-import Button from '../../components/Button/Button';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { useContext, useEffect } from "preact/hooks";
+import Image from "next/image";
+import { useAmp } from "next/amp";
+import { AppContext } from "../_app";
+import { IAppState } from "../../interfaces/app-state";
+import MainLayout from "../../layouts/main-layout/MainLayout";
+import Navbar from "../../components/Navbar/Navbar";
+import Button from "../../components/Button/Button";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import IStaticPropsParams from "interfaces/static-props-params";
+import IParsedPageData from "interfaces/parsed-page-data";
 
-export const config = { amp: 'hybrid' };
+export const config = { amp: "hybrid" };
 
-export default function Portfolio() {
+export default function Portfolio({ meta }: IParsedPageData) {
   const ctx = useContext(AppContext);
   const appState: IAppState = { ...ctx } as IAppState;
   const isAmp = useAmp();
   gsap.registerPlugin(ScrollTrigger);
   const animateCards = () => {
-    gsap.set('.portfolio-item', {
+    gsap.set(".portfolio-item", {
       opacity: 0,
       scale: 0.9,
     });
-    gsap.set('.portfolio-item h3', {
+    gsap.set(".portfolio-item h3", {
       opacity: 0,
       y: 75,
       scale: 0.9,
     });
-    gsap.set('.portfolio-item__image', {
+    gsap.set(".portfolio-item__image", {
       opacity: 0,
       y: 50,
       scale: 0.9,
     });
-    ScrollTrigger.batch('.portfolio-item', {
+    ScrollTrigger.batch(".portfolio-item", {
       onEnter: (batch) => {
         batch.forEach((item, index) => {
           const settings = {
@@ -64,10 +68,10 @@ export default function Portfolio() {
       <div className="container-xxl">
         <h1 className="page-title my-5 mx-3">Portfolio</h1>
         <div className="portfolio">
-          {fakePortfolio.map((item) => {
+          {meta.map((item: any, index: number) => {
             const { image, description, title, url, codeUrl } = item;
             return (
-              <div key={item.id} className="portfolio-item">
+              <div key={index} className="portfolio-item">
                 <h3>{title}</h3>
                 {isAmp ? (
                   // @ts-ignore
@@ -89,7 +93,7 @@ export default function Portfolio() {
                       layout="responsive"
                       objectFit="cover"
                       blurDataURL={`/e_blur:1793/${image}`}
-                      placeholder='blur'
+                      placeholder="blur"
                     />
                   </div>
                 )}
@@ -105,7 +109,11 @@ export default function Portfolio() {
                     borderWidth="3px"
                     theme={appState.data.style}
                   />
-                  <a className="repo-link-btn" href={codeUrl}>{`</>`}</a>
+                  <a
+                    className="repo-link-btn"
+                    href={codeUrl}
+                    target="_blank"
+                  >{`</>`}</a>
                 </div>
               </div>
             );
@@ -158,3 +166,29 @@ export default function Portfolio() {
     </MainLayout>
   );
 }
+
+export const getStaticProps = async ({}: IStaticPropsParams) => {
+  const files = fs.readdirSync(path.resolve("src/static-content/portfolio"));
+  const metaData: any[] = [];
+
+  files.map((filename: string) => {
+    const slug = filename.replace(".md", "");
+    const fileMeta = fs
+      .readFileSync(
+        path.join(path.resolve("src/static-content/portfolio"), filename),
+      )
+      .toString();
+    const parsedMd = matter(fileMeta);
+    const itemData = {
+      ...parsedMd.data,
+      url: `/portfolio/${slug}`,
+    };
+    metaData.push(itemData);
+  });
+
+  return {
+    props: {
+      meta: metaData,
+    },
+  };
+};
