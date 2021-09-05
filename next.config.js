@@ -1,5 +1,13 @@
 const withPreact = require('next-plugin-preact');
 
 module.exports = withPreact({
-  /* regular next.js config options here */
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+
+        return config
+        },
+    images: {
+        loader: 'cloudinary',
+        path: `https://res.cloudinary.com/czernous/image/upload/`
+    }
 });
+
