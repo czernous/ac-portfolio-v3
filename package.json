@@ -22,7 +22,7 @@
     "react-dom": "npm:@preact/compat@0.0.4"
   },
   "devDependencies": {
-    "@types/marked": "^2.0.4",
+    "@types/marked": "^2.0.5",
     "@types/react": "^17.0.14",
     "@types/styled-jsx": "^2.2.9",
     "eslint": "7.30.0",
