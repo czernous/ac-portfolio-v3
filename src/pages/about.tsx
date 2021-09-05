@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { AppContext } from "./_app";
 import { IAppState } from "../interfaces/app-state";
+import Head from "next/head";
 
 export default function Contact() {
   const ctx = useContext(AppContext);
@@ -55,6 +56,17 @@ export default function Contact() {
 
   return (
     <MainLayout theme={appState.data.style}>
+      <Head>
+        <title>{`${appState.siteName} | About`}</title>
+        <meta
+          name="description"
+          content="Anton Chernous - Full-Stack web developer. I design and build websites and apps using TypeScript, Angular, React, Express, and more. Click to read more."
+        />
+        <meta
+          name="keywords"
+          content="Web developer, UI designer, web designer, full stack developer, frontend developer, build websites"
+        />
+      </Head>
       <Navbar
         theme={appState.data.style}
         toggleTheme={appState.toggleFunc}

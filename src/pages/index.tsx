@@ -1,25 +1,25 @@
-import MainLayout from 'layouts/main-layout/MainLayout';
-import Navbar from 'components/Navbar/Navbar';
-import Link from 'next/link';
-import { AppContext } from './_app';
-import { useContext, useEffect } from 'preact/hooks';
-import { IAppState } from 'interfaces/app-state';
-import BgDark from '../../public/assets/common/bg-dark.png';
-import BgLight from '../../public/assets/common/bg-light.png';
-import Button from 'components/Button/Button';
-import { gsap, Expo } from 'gsap';
+import MainLayout from "layouts/main-layout/MainLayout";
+import Navbar from "components/Navbar/Navbar";
+import Head from "next/head";
+import { AppContext } from "./_app";
+import { useContext, useEffect } from "preact/hooks";
+import { IAppState } from "interfaces/app-state";
+import BgDark from "../../public/assets/common/bg-dark.png";
+import BgLight from "../../public/assets/common/bg-light.png";
+import Button from "components/Button/Button";
+import { gsap, Expo } from "gsap";
 
 export default function Home() {
   const ctx = useContext(AppContext);
   const appState: IAppState = { ...ctx } as IAppState;
-  const background = appState.data.name === 'DARK' ? BgDark : BgLight;
+  const background = appState.data.name === "DARK" ? BgDark : BgLight;
 
   const animateHero = () => {
     const tl = gsap.timeline();
-    gsap.set('.home__subheading', { x: '-51%', visibility: 'hidden' });
-    gsap.set('.btn', { y: '201%' });
+    gsap.set(".home__subheading", { x: "-51%", visibility: "hidden" });
+    gsap.set(".btn", { y: "201%" });
     tl.fromTo(
-      '.home__heading',
+      ".home__heading",
       {
         duration: 3.5,
         height: 0,
@@ -30,24 +30,24 @@ export default function Home() {
       },
       {
         duration: 3.5,
-        height: 'auto',
+        height: "auto",
         opacity: 1,
         delay: -0.7,
         ease: Expo.easeInOut,
         force3D: true,
-      }
+      },
     )
-      .to('.home__subheading', {
-        x: '0%',
-        visibility: 'visible',
+      .to(".home__subheading", {
+        x: "0%",
+        visibility: "visible",
         duration: 2.5,
         delay: -1,
       })
-      .to('.btn', {
-        y: '0%',
+      .to(".btn", {
+        y: "0%",
         duration: 1,
         delay: -2,
-        ease: 'expo.out',
+        ease: "expo.out",
       });
   };
 
@@ -56,6 +56,14 @@ export default function Home() {
   }, []);
   return (
     <MainLayout theme={appState.data.style}>
+      <Head>
+        <title>{`${appState.siteName} | Home`}</title>
+        <meta name="description" content="" />
+        <meta
+          name="keywords"
+          content="Web developer, UI design, web design, full stack developer, frontend developer, wordpress, websites, landing page, e-commerce"
+        />
+      </Head>
       <Navbar
         theme={appState.data.style}
         toggleTheme={appState.toggleFunc}
@@ -95,7 +103,7 @@ export default function Home() {
           }
 
           .home__heading {
-            font-family: 'Cinzel Decorative', serif;
+            font-family: "Cinzel Decorative", serif;
             color: ${appState.data.style.mainContrast};
             font-size: 4em;
             margin-top: 20vh;

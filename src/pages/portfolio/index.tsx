@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { useContext, useEffect } from "preact/hooks";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { useAmp } from "next/amp";
 import { AppContext } from "../_app";
 import { IAppState } from "../../interfaces/app-state";
@@ -61,6 +62,22 @@ export default function Portfolio({ meta }: IParsedPageData) {
 
   return (
     <MainLayout theme={appState.data.style}>
+      <Head>
+        <title>{`${appState.siteName} | Portfolio`}</title>
+        <meta
+          name="description"
+          content="Anton Chernous - Web development and design portfolio. See samples of prior work. Click to browse."
+        />
+        <meta
+          name="keywords"
+          content="Websites, apps, landing pages, react, vue, javascript, angular, typescript, developer, .net, c#, nest, express, next"
+        />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={meta.image} />
+        <meta property="og:url" content={meta.url} />
+      </Head>
+
       <Navbar
         theme={appState.data.style}
         toggleTheme={appState.toggleFunc}

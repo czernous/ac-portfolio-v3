@@ -1,10 +1,11 @@
-import MainLayout from 'layouts/main-layout/MainLayout';
-import Navbar from 'components/Navbar/Navbar';
-import { useContext, useEffect } from 'preact/hooks';
-import { AppContext } from './_app';
-import { IAppState } from '../interfaces/app-state';
-import Button from '../components/Button/Button';
-import gsap from 'gsap';
+import MainLayout from "layouts/main-layout/MainLayout";
+import Navbar from "components/Navbar/Navbar";
+import { useContext, useEffect } from "preact/hooks";
+import { AppContext } from "./_app";
+import { IAppState } from "../interfaces/app-state";
+import Button from "../components/Button/Button";
+import gsap from "gsap";
+import Head from "next/head";
 
 export default function Contact() {
   const ctx = useContext(AppContext);
@@ -14,7 +15,7 @@ export default function Contact() {
     const tl = gsap.timeline();
 
     tl.fromTo(
-      ['.contact-form__field', '.btn-container'],
+      [".contact-form__field", ".btn-container"],
       {
         duration: 0.8,
         y: -55,
@@ -28,7 +29,7 @@ export default function Contact() {
         opacity: 1,
         delay: 0.2,
         stagger: 0.1,
-      }
+      },
     );
   };
 
@@ -38,6 +39,13 @@ export default function Contact() {
 
   return (
     <MainLayout theme={appState.data.style}>
+      <Head>
+        <title>{`${appState.siteName} | Contact`}</title>
+        <meta
+          name="keywords"
+          content="Web developer, UI design, web design, full stack developer, frontend developer, wordpress, websites, landing page, e-commerce"
+        />
+      </Head>
       <Navbar
         theme={appState.data.style}
         toggleTheme={appState.toggleFunc}
