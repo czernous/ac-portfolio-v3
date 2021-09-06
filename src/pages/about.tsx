@@ -131,7 +131,7 @@ export default function Contact() {
               alt="Anton's picture"
               layout="fill"
               objectFit="cover"
-              blurDataURL={`/e_blur:1793/ac-dev-portfolio/portfolio_images/site_assets/ac-profile-image_cbgpjg.webp`}
+              blurDataURL={`https://res.cloudinary.com/czernous/image/upload/e_blur:1793/ac-dev-portfolio/portfolio_images/site_assets/ac-profile-image_cbgpjg.webp`}
               placeholder="blur"
             />
           </div>
