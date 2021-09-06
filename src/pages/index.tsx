@@ -58,7 +58,10 @@ export default function Home() {
     <MainLayout theme={appState.data.style}>
       <Head>
         <title>{`${appState.siteName} | Home`}</title>
-        <meta name="description" content="" />
+        <meta
+          name="description"
+          content="Quality websites and apps for our business. Boost your conversion rates and brand awareness. Click to learn more"
+        />
         <meta
           name="keywords"
           content="Web developer, UI design, web design, full stack developer, frontend developer, wordpress, websites, landing page, e-commerce"
