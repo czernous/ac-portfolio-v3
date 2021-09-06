@@ -110,7 +110,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
                       alt=""
                       layout="responsive"
                       objectFit="cover"
-                      blurDataURL={`/e_blur:1793/${image}`}
+                      blurDataURL={`https://res.cloudinary.com/czernous/image/upload/e_blur:1793/${image}`}
                       placeholder="blur"
                     />
                   </div>
