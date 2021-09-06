@@ -29,6 +29,13 @@ const PortfolioDetailItem = ({ content, meta }: IParsedPageData) => {
             className="mt-3 px-3 d-flex flex-column"
             dangerouslySetInnerHTML={{ __html: content }}
           />
+          <style jsx global>
+            {`
+              #${meta.title.toLowerCase().split(" ").join("-")} {
+                margin-top: 1em !important;
+              }
+            `}
+          </style>
         </div>
       </MainLayout>
     </>

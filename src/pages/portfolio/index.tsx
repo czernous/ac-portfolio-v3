@@ -28,7 +28,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
       opacity: 0,
       scale: 0.9,
     });
-    gsap.set(".portfolio-item h3", {
+    gsap.set(".portfolio-item .portfolio-item__title", {
       opacity: 0,
       y: 75,
       scale: 0.9,
@@ -90,7 +90,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
             const { image, description, title, url, codeUrl } = item;
             return (
               <div key={index} className="portfolio-item">
-                <h3>{title}</h3>
+                <h2 className="portfolio-item__title">{title}</h2>
                 {isAmp ? (
                   // @ts-ignore
                   <amp-img
@@ -155,7 +155,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
               }
 
-              .portfolio-item h3 {
+              .portfolio-item .portfolio-item__title {
                 color: ${appState.data.style.headerText};
                 font-weight: 700;
               }

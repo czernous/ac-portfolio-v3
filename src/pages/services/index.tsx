@@ -2,8 +2,6 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { useContext, useEffect } from "preact/hooks";
-import Image from "next/image";
-import Link from "next/link";
 import Head from "next/head";
 import { AppContext } from "../_app";
 import { IAppState } from "../../interfaces/app-state";
@@ -11,7 +9,6 @@ import MainLayout from "../../layouts/main-layout/MainLayout";
 import Navbar from "../../components/Navbar/Navbar";
 import Button from "../../components/Button/Button";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import IStaticPropsParams from "interfaces/static-props-params";
 import IParsedPageData from "interfaces/parsed-page-data";
 
@@ -76,7 +73,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
                     dangerouslySetInnerHTML={{ __html: icon }}
                   ></div>
                   <div className="services-item__content">
-                    <h3>{title}</h3>
+                    <h2 className="services-item__title">{title}</h2>
                     <p>{description}</p>
                     <Button
                       type="link"
@@ -107,7 +104,7 @@ export default function Portfolio({ meta }: IParsedPageData) {
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
               }
 
-              .services-item h3 {
+              .services-item .services-item__title {
                 color: ${appState.data.style.headerText};
                 font-weight: 700;
               }
