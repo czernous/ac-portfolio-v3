@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "gen-sitemap": "next-sitemap --config next-sitemap.js",
-    "build-static": "next lint && next build && npm run gen-sitemap && next export"
+    "build-static": "next lint && next build && next export && npm run gen-sitemap"
   },
   "dependencies": {
     "cloudinary-build-url": "^0.2.1",
