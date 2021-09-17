@@ -1,7 +1,7 @@
 ---
 id: 2
 title: 'Web development'
-description: "Design is important but what happens under the good is equally as important or perhaps even more important the visual aspect of your website. By following best programming practices and thorough testing I ensure your website's longevity and speed."
+description: "Design is important but what happens under the hood is equally as important or perhaps even more important the visual aspect of your website. By following best programming practices and thorough testing I ensure your website's longevity and speed."
 tags: [development, web_development, javascript, react, angular, vue, wordpress, e-commerce]
 icon: '<svg class="services-svg-icon" style="padding: 0 3em; margin-top: -1.5em" width="440" height="325" viewBox="0 0 440 325" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="1.5" y="1.5" width="437" height="322" rx="7.5" stroke="#F6ACCB" stroke-width="3"/>
@@ -162,7 +162,7 @@ icon: '<svg class="services-svg-icon" style="padding: 0 3em; margin-top: -1.5em"
 ---
 
 
-Great web design with no functionality is like a sports car with no engine - Paul Cookson
+According to Paul Cookson, great web design with no functionality is like a sports care with no engine.
 A website that functions well increases the time users spend on your platform which gives you the opportunity for them to become your customers.  
 
 Imagine a customer clicks on their site and your page takes forever to load. The customer will get frustrated, leave and purchase from your competitors.

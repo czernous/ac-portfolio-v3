@@ -50,4 +50,4 @@ Poor choice of fonts, colours, images leave the impression that a website has be
 #### *Don’t follow programming best practices*
 Poorly written and unoptimized code is prone to bugs that can potentially slow down your website or app. User bounce rate drastically increases if your page load time exceeds 3s and having critical bugs on your website or app can disrupt its user experience or even damage your reputation.
 
-**When you work with me I will build you a beautifully organized custom website with a clear message that speaks to your audience. Allowing you to stand out from your competition.  <a href='#'>Get a quote</a>**
+**When you work with me I will build you a beautifully organized custom website with a clear message that speaks to your audience. Allowing you to stand out from your Competition.  <a href='#'>Get a quote</a>**

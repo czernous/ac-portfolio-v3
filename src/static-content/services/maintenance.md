@@ -1,7 +1,7 @@
 ---
 id: 3
 title: 'Maintenance'
-description: 'Sometimes your website breaks for no obvious reason. This causes a lot of frustration and costly downtime. I can help you find and fix bugs, broken layout, links, and images ensuring that your website or app runs smoothly providing the best user experience to your audience.'
+description: 'Sometimes your website breaks for no obvious reason. This can be frustrating and become a downtime cost. I can help you find and fix bugs, broken layout, links, and images ensuring that your website or app runs smoothly providing the best user experience to your audience.'
 tags: [maintenance, web_maintenance, javascript, react, angular, vue, wordpress, e-commerce, support, bugs, troubleshooting]
 icon: '<svg class="services-svg-icon" style="padding: 0 3em; margin-top: -1.5em" width="440" height="325" viewBox="0 0 440 325" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M233 97H378.442" stroke="#F6ACCB" stroke-width="3" stroke-linecap="round"/>
@@ -38,4 +38,4 @@ As a full-stack developer. Not only can I help you with your website’s fronten
 
 User accounts help build loyal customers by making purchasing a pleasant and easy experience. Clients can save data like credit card information for a swift checkout. As well as access their data on different devices.
 
-**You don’t need to bother yourself with problems on your website. I’m your guy! I will fix any issues on your website and make sure your website is running smoothly. <a href='#'>Get a quote</a>**
+**You don't need to bother yourself with problems on your website. I'm your guy. I will fix technical issues and have your website running smoothly in no time. <a href='#'>Get a quote</a>**

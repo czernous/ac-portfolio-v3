@@ -113,7 +113,7 @@ export default function Contact() {
                 <li>Building your website</li>
               </ul>
               So are you ready to take your business to the next step by
-              improving your rankings, reducing bounce rates andincreasing your
+              improving your rankings, reducing bounce rates and increasing your
               revenue? <br />
               <br />
               <Link href="/contact">
