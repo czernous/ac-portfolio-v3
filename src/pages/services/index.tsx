@@ -131,6 +131,13 @@ export default function Portfolio({ meta }: IParsedPageData) {
               .services-svg-icon {
                 height: 300px !important;
               }
+
+              .services-svg-icon * {
+                stroke: ${appState.data.style.mainContrast};
+              }
+              .services-svg-icon ellipse {
+                fill: ${appState.data.style.mainContrast};
+              }
             `}
           </style>
         </div>
