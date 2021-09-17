@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build-static": "next lint && next build && next export"
+    "gen-sitemap": "next-sitemap --config next-sitemap.js",
+    "build-static": "next lint && next build && npm run gen-sitemap && next export"
   },
   "dependencies": {
     "cloudinary-build-url": "^0.2.1",
@@ -27,6 +28,7 @@
     "@types/styled-jsx": "^2.2.9",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
+    "next-sitemap": "^1.6.168",
     "prettier": "^2.3.2",
     "typescript": "4.3.5"
   }
