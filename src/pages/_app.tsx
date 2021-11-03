@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import Script from "next/script";
 import { createContext } from "preact";
 import { useEffect, useReducer } from "preact/hooks";
 import { themeReducer } from "reducers/theme-reducer";
@@ -47,27 +48,40 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, dispatch }}>
-      <Component
-        {...pageProps}
-        theme={currentTheme.data.style}
-        toggleTheme={toggleTheme}
+    <>
+      {/* Global site tag (gtag.js) - Google Analytics */}
+      <Script
+        strategy="lazyOnload"
+        src="https://www.googletagmanager.com/gtag/js?id=G-Y5JK4HW69N"
       />
-      <style jsx global>
-        {`
-          body,
-          html {
-            font-family: "Open Sans", sans-serif;
-            background-color: ${currentTheme.data.style.background};
-            color: ${currentTheme.data.style.text};
-          }
-          .page-title {
-            color: ${currentTheme.data.style.headerText};
-            font-weight: 700;
-          }
-        `}
-      </style>
-    </AppContext.Provider>
+
+      <Script strategy="lazyOnload">
+        {`window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)}
+              gtag('js', new Date()); gtag('config', 'G-Y5JK4HW69N');`}
+      </Script>
+      <AppContext.Provider value={{ ...state, dispatch }}>
+        <Component
+          {...pageProps}
+          theme={currentTheme.data.style}
+          toggleTheme={toggleTheme}
+        />
+        <style jsx global>
+          {`
+            body,
+            html {
+              font-family: "Open Sans", sans-serif;
+              background-color: ${currentTheme.data.style.background};
+              color: ${currentTheme.data.style.text};
+            }
+            .page-title {
+              color: ${currentTheme.data.style.headerText};
+              font-weight: 700;
+            }
+          `}
+        </style>
+      </AppContext.Provider>
+    </>
   );
 }
 export default MyApp;

@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
 
 class MyDocument extends Document {
   render() {
@@ -42,20 +41,6 @@ class MyDocument extends Document {
             rel="manifest"
             href="https://phounton.sirv.com/Images/ac-dev-portfolio/icons/site.webmanifest"
           />
-          {/* Global site tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-Y5JK4HW69N"
-          ></script>
-
-          <Script>
-            dangerouslySetInnerHTML=
-            {{
-              __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments)}
-              gtag('js', new Date()); gtag('config', 'G-Y5JK4HW69N');`,
-            }}
-          </Script>
         </Head>
         <body>
           <Main />
