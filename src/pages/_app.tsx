@@ -58,7 +58,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Script strategy="lazyOnload">
         {`window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments)}
-              gtag('js', new Date()); gtag('config', 'G-Y5JK4HW69N');`}
+              var isJsArg = dataLayer.find(i => i[0] === "js") !== undefined
+                ? true
+                : false;
+              var isConfigArg = dataLayer.find(i => i[1] === "config") !== undefined
+                ? true
+                : false;
+             if(!isJsArg && !isConfigArg) {gtag('js', new Date()); gtag('config', 'G-Y5JK4HW69N')};`}
       </Script>
       <AppContext.Provider value={{ ...state, dispatch }}>
         <Component
